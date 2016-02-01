@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= favicon_link_tag 'favicon.ico' %>
   <title>CashBook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div class="background-div"></div>
+
+  <% if current_user  %>
+  <script>
+  window.CURRENT_USER_ID = <%= current_user.id %>
+  window.CURRENT_USERNAME = "<%= current_user.username %>"
+  </script>
+  <% end %>
+
+  <%= flash[:errors] %>
 
 <%= yield %>
 

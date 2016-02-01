@@ -1,0 +1,46 @@
+<div class="cashbook-title">
+  <h1>Welcome to CashBook!</h1>
+  <h3>Plan Budgets and make wish lists with friends.</h3>
+</div>
+
+<div class="jumbotron col-xs-offset-4 col-xs-4">
+
+  <h2>Sign Up</h2>
+
+  <form class="form-group" action="<%= users_url %>" method="post">
+
+    <%= auth_token %>
+
+    <input placeholder="username" class="form-control" id ="user_username" type="text" name="user[username]" value="<%=@user.username %>">
+  <br/>
+  <br/>
+    <input placeholder="password" class="form-control" id="user_password" type="password" name="user[password]">
+  <br/>
+  <br/>
+    <input class="form-control btn btn-primary" type="submit" value="Sign Up">
+  </form>
+
+  <br/>
+
+  <p>Already have an account? <%= link_to "Sign in", new_session_url %>.</p>
+  <p>Or try a <a id="demo-link">demo account</a>.</p>
+  </div>
+
+  <script type=text/javascript>
+    $(function(){
+      $('#demo-link').on('click', function() {
+        $('input:text').val('scrooge');
+        $('input:password').val('password');
+        $.ajax({
+          url: '/session',
+          type: "POST",
+          data: { user: {username: 'scrooge', password: 'password'}  },
+          success: function() {
+            window.location.href = "/";
+          }
+        })
+      });
+    })
+  </script>
+
+</div>
