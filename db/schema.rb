@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202010908) do
+ActiveRecord::Schema.define(version: 20160202055015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_holders", force: :cascade do |t|
+    t.integer  "account_id", null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "account_holders", ["account_id", "user_id"], name: "index_account_holders_on_account_id_and_user_id", unique: true, using: :btree
+  add_index "account_holders", ["user_id"], name: "index_account_holders_on_user_id", using: :btree
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name",        null: false
@@ -42,6 +52,16 @@ ActiveRecord::Schema.define(version: 20160202010908) do
   add_index "balances", ["account_id"], name: "index_balances_on_account_id", using: :btree
   add_index "balances", ["date"], name: "index_balances_on_date", using: :btree
 
+  create_table "expenses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "frequency",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "password_digest", null: false
@@ -52,5 +72,21 @@ ActiveRecord::Schema.define(version: 20160202010908) do
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "wish_lists", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wishers", force: :cascade do |t|
+    t.integer  "list_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wishers", ["list_id", "user_id"], name: "index_wishers_on_list_id_and_user_id", unique: true, using: :btree
+  add_index "wishers", ["user_id"], name: "index_wishers_on_user_id", using: :btree
 
 end
