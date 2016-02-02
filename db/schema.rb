@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202055015) do
+ActiveRecord::Schema.define(version: 20160202113440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20160202055015) do
   add_index "balances", ["account_id"], name: "index_balances_on_account_id", using: :btree
   add_index "balances", ["date"], name: "index_balances_on_date", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "item_id",    null: false
+    t.datetime "date",       null: false
+    t.text     "content",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["item_id"], name: "index_comments_on_item_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "expenses", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "frequency",  null: false
@@ -61,6 +73,34 @@ ActiveRecord::Schema.define(version: 20160202055015) do
   end
 
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "image_url"
+    t.integer  "list_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "items", ["list_id"], name: "index_items_on_list_id", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["item_id"], name: "index_taggings_on_item_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
@@ -89,4 +129,6 @@ ActiveRecord::Schema.define(version: 20160202055015) do
   add_index "wishers", ["list_id", "user_id"], name: "index_wishers_on_list_id_and_user_id", unique: true, using: :btree
   add_index "wishers", ["user_id"], name: "index_wishers_on_user_id", using: :btree
 
+  add_foreign_key "taggings", "items"
+  add_foreign_key "taggings", "tags"
 end

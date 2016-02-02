@@ -64,7 +64,7 @@ id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
 item_id     | integer   | not null, foreign key (references items), indexed
 date        | datetime  | not null
-type        | string    | not null
+content     | text      | not null
 
 ## tags
 column name | data type | details
@@ -76,7 +76,6 @@ name        | string    | not null
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-name        | string    | not null
 item_id     | integer   | not null, foreign key (references items), indexed, unique [tag_id]
 tag_id      | integer   | not null, foreign key (references tags), indexed
 
