@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><%= link_to "Home", root_url, method: :get %></li>
+        <li role="presentation"><%= link_to "Wish List", wish_url, method: :get %></li>
+        <li role="presentation"><%= link_to "Budget", budget_url, method: :get %></li>
+        <li role="presentation"><%= link_to "About", about_url, method: :get %></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted"><a href="index.html">CashBook</a></h3>
+  </div>
+  <div class="jumbotron">
+    <h1>Welcome, <%= current_user.username %></h1>
+
+    <p>
+      This is where you might put a breif summary of your current goals or some other info about you.
+    </p>
+
+  </div>
+  <img src="images/matt.jpg" width='100' alt="Matt" />
+</div>
