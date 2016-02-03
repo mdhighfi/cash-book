@@ -4,6 +4,12 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :accounts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :expenses, dependent: :destroy
+  has_many :wish_lists, through: :wishers
+
+
   after_initialize :ensure_session_token
 
   def password=(password)
