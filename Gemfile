@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'annotate'
+gem 'figaro'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'byebug'

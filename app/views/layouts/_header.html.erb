@@ -16,6 +16,12 @@
       <li role="presentation">
         <%= link_to "Log Out", '/session', method: :delete %>
       </li>
+      <li>
+        <%= cl_image_tag(
+        "c-book-scrooge.png", alt: "Profile photo", width: 60,
+        height: 70, crop: :fill, gravity: :face,
+        radius: :max, effect: :sepia, border: "2px_solid_black") %>
+      </li>
     </ul>
   </nav>
   <h3 class="text-muted">

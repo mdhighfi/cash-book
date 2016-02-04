@@ -13,3 +13,8 @@
 /tmp
 
 /app/assets/images/money.jpg
+/app/assets/images/scrooge.jpg
+
+# Ignore application configuration
+/config/application.yml
+/config/cloudinary.yml
