@@ -1,0 +1,24 @@
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" class="<%=is_active('users','show')%>">
+        <%= link_to "Home", root_url, method: :get %>
+      </li>
+      <li role="presentation" class="<%=is_active('wish_lists', 'index')%>">
+        <%= link_to "Wish List", user_wish_lists_url(@user) %>
+      </li>
+      <li role="presentation" class="<%=is_active('accounts', 'index')%>">
+        <%= link_to "Budget", user_accounts_url(@user) %>
+      </li>
+      <li role="presentation" class="<%=is_active('static_pages', 'about')%>">
+        <%= link_to "About", static_pages_about_url(@user), method: :get %>
+      </li>
+      <li role="presentation">
+        <%= link_to "Log Out", '/session', method: :delete %>
+      </li>
+    </ul>
+  </nav>
+  <h3 class="text-muted">
+    <%= link_to "CashBook", static_pages_about_url(@user), method: :get %>
+  </h3>
+</div>

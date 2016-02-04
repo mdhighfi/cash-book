@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :wish_lists, only: [:create, :show, :update, :destroy]
   resources :comments, only: [:create, :update, :destroy]
 
-  resource :about, only: [:show]
+  get  'static_pages/about'
 end

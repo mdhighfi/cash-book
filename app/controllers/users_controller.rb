@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    require_logged_in
+    @user = current_user
   end
 
   private

@@ -1,6 +1,24 @@
 class AccountsController < ApplicationController
-  validates :name, :type, :apr, :min_payment, :credit,
-            :user_id, :created_at, :updated_at, presence: true
+  def index
+    @user = current_user
+  end
 
-  belongs_to :user
+  def new
+  end
+
+  def edit
+  end
+
+  def create
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
 end

@@ -1,16 +1,4 @@
 <div class="container">
-  <div class="header clearfix">
-    <nav>
-      <ul class="nav nav-pills pull-right">
-        <li role="presentation" class="active"><%= link_to "Home", root_url, method: :get %></li>
-        <li role="presentation"><%= link_to "Wish List", user_wish_lists_url, method: :get %></li>
-        <li role="presentation"><%= link_to "Budget", user_accounts_url, method: :get %></li>
-        <li role="presentation"><%= link_to "About", about_url, method: :get %></li>
-        <li role="presentation"><%= link_to "Log Out", new_session_url, method: :delete %></li>
-      </ul>
-    </nav>
-    <h3 class="text-muted"><a href="index.html">CashBook</a></h3>
-  </div>
   <div class="jumbotron">
     <h1>Welcome, <%= current_user.username %></h1>
 
